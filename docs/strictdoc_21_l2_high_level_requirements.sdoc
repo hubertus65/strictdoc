@@ -1553,6 +1553,29 @@ language's specifics.
 <<<
 
 [REQUIREMENT]
+MID: dff52f7579794506b60b26f6d735a6d7
+UID: SDOC-SRS-208
+STATUS: Draft
+TITLE: Language-aware parsing of Modelica code
+STATEMENT: >>>
+StrictDoc shall parse the Modelica source files to the level of classes and
+component declarations.
+<<<
+RATIONALE: >>>
+In a Modelica model, a class or a component implements or checks a
+requirement. Line ranges are fragile in Modelica code, because Modelica tools
+rewrite files when a user edits a model graphically.
+<<<
+COMMENT: >>>
+The Modelica parser uses only the existing dependencies of StrictDoc. Reason:
+the tree-sitter grammar for Modelica is under the OSMC Public License, which
+grants non-members of the OSMC use under AGPL 3.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SSS-72
+
+[REQUIREMENT]
 MID: 9183080f1358485f9bacdcda0635109
 UID: SDOC-SRS-148
 STATUS: Active

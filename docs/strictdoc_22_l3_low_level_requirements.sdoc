@@ -817,6 +817,184 @@ shall match the following C source code macro definition:
 
 [[/SECTION]]
 
+[[SECTION]]
+MID: ff6dbe210c0c471581c87be15eeaf0d2
+TITLE: Modelica
+
+[REQUIREMENT]
+MID: ce516ffd17d04660a1a903306fbae0ea
+UID: SDOC-LLR-219
+STATUS: Draft
+TITLE: Modelica classes
+STATEMENT: >>>
+StrictDoc shall create a language item for each Modelica class definition in a
+Modelica source file.
+<<<
+COMMENT: >>>
+Class definitions include long and short definitions, nested classes,
+:code:`model extends` definitions and each class kind, for example
+:code:`model`, :code:`block`, :code:`function`, :code:`package` and
+:code:`record`.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+
+[REQUIREMENT]
+MID: 30a76c38bfc242e1b5fb82923cb6619d
+UID: SDOC-LLR-220
+STATUS: Draft
+TITLE: Modelica component declarations
+STATEMENT: >>>
+StrictDoc shall create a language item for each component declaration in the
+public and protected sections of a Modelica class.
+<<<
+COMMENT: >>>
+A declaration of several components, for example :code:`Real a, b;`, results
+in one language item for each component.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+
+[REQUIREMENT]
+MID: 8230f38c302a4b6c83d06851084297dd
+UID: SDOC-LLR-221
+STATUS: Draft
+TITLE: Qualified names of Modelica items
+STATEMENT: >>>
+StrictDoc shall name each Modelica language item by its fully qualified
+Modelica name.
+<<<
+COMMENT: >>>
+The qualified name starts with the package name of the :code:`within` clause.
+Example: the component :code:`req1Check` of the model :code:`Check` in a file
+that starts with :code:`within Rig;` has the name :code:`Rig.Check.req1Check`.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+
+[REQUIREMENT]
+MID: a858b2dcbc9541deae8a7f1237b92af9
+UID: SDOC-LLR-222
+STATUS: Draft
+TITLE: Markers in Modelica description strings
+STATEMENT: >>>
+When the description string of a Modelica class or component contains a
+relation marker, StrictDoc shall attach the relation marker to the class or
+component of the description string.
+<<<
+COMMENT: >>>
+Example:
+
+.. code-block:: modelica
+
+   model Check "Checks of TC-1 @relation(TC-1, scope=class)"
+     Gain req2Check(k=1) "Rise check @relation(REQ-2, scope=function)";
+   end Check;
+
+The description string is the Modelica counterpart of a Python docstring.
+Modelica tools keep description strings when they rewrite a file.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+- TYPE: Parent
+  VALUE: SDOC-SRS-137
+
+[REQUIREMENT]
+MID: 148cf9de4a5d4e559a6cf170f11cc51c
+UID: SDOC-LLR-223
+STATUS: Draft
+TITLE: Marker comment above a Modelica class
+STATEMENT: >>>
+When a comment ends on the line directly above a Modelica class header,
+StrictDoc shall attach the relation markers of the comment to the class.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+- TYPE: Parent
+  VALUE: SDOC-SRS-137
+
+[REQUIREMENT]
+MID: c7348e59b87d4074aa1fcf06a98c38a0
+UID: SDOC-LLR-224
+STATUS: Draft
+TITLE: File, line and range markers in Modelica code
+STATEMENT: >>>
+StrictDoc shall read file, line and range markers from the line comments and
+the block comments of Modelica code.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+- TYPE: Parent
+  VALUE: SDOC-SRS-139
+- TYPE: Parent
+  VALUE: SDOC-SRS-124
+- TYPE: Parent
+  VALUE: SDOC-SRS-138
+
+[REQUIREMENT]
+MID: cbc23c71071a4f7598175b53f85071f9
+UID: SDOC-LLR-225
+STATUS: Draft
+TITLE: Forward relations to Modelica items
+STATEMENT: >>>
+StrictDoc shall resolve a :code:`File` relation with a :code:`FUNCTION` or
+:code:`CLASS` field to the Modelica language item with the qualified name of
+the field.
+<<<
+COMMENT: >>>
+Example:
+
+.. code-block:: strictdoc
+
+   [TEST_CASE]
+   UID: TC-2
+   RELATIONS:
+   - TYPE: File
+     VALUE: Rig/Check.mo
+     CLASS: Rig.Check
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+
+[REQUIREMENT]
+MID: 221b2fe9ec63461e8bb6b1b5b39b99b8
+UID: SDOC-LLR-226
+STATUS: Draft
+TITLE: Modelica file the parser cannot read
+STATEMENT: >>>
+If the Modelica parser cannot read a Modelica source file, then StrictDoc shall
+read the file, line and range markers of the file without language items.
+<<<
+RATIONALE: >>>
+With this fallback, a syntax error in one model leaves the file, line and range
+markers of the file in effect.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+
+[REQUIREMENT]
+MID: 0ddaf5d398fe4b3ab292f0bcb0124ca1
+UID: SDOC-LLR-227
+STATUS: Draft
+TITLE: Warning for a Modelica file the parser cannot read
+STATEMENT: >>>
+If the Modelica parser cannot read a Modelica source file, then StrictDoc shall
+print a warning with the path of the file and the line of the error.
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SDOC-SRS-208
+
+[[/SECTION]]
+
 [[/SECTION]]
 
 [[SECTION]]

@@ -1,0 +1,121 @@
+[DOCUMENT]
+MID: d342a797bd494f68b5466d77e0ed6431
+TITLE: Technical note: Modelica simulation models
+VERSION: Git commit: @GIT_VERSION, Git branch: @GIT_BRANCH
+DATE: @GIT_COMMIT_DATETIME
+PREFIX: MOD-
+ROOT: True
+OPTIONS:
+  ENABLE_MID: True
+
+[GRAMMAR]
+ELEMENTS:
+- TAG: SECTION
+  PROPERTIES:
+    IS_COMPOSITE: True
+  FIELDS:
+  - TITLE: MID
+    TYPE: String
+    REQUIRED: True
+  - TITLE: UID
+    TYPE: String
+    REQUIRED: False
+  - TITLE: LEVEL
+    TYPE: String
+    REQUIRED: False
+  - TITLE: PREFIX
+    TYPE: String
+    REQUIRED: False
+  - TITLE: TITLE
+    TYPE: String
+    REQUIRED: True
+- TAG: TEXT
+  FIELDS:
+  - TITLE: MID
+    TYPE: String
+    REQUIRED: True
+  - TITLE: UID
+    TYPE: String
+    REQUIRED: False
+  - TITLE: STATEMENT
+    TYPE: String
+    REQUIRED: False
+- TAG: REQUIREMENT
+  FIELDS:
+  - TITLE: MID
+    TYPE: String
+    REQUIRED: False
+  - TITLE: UID
+    TYPE: String
+    REQUIRED: False
+  - TITLE: STATUS
+    TYPE: String
+    REQUIRED: False
+  - TITLE: TITLE
+    TYPE: String
+    REQUIRED: False
+  - TITLE: STATEMENT
+    TYPE: String
+    REQUIRED: False
+  - TITLE: RATIONALE
+    TYPE: String
+    REQUIRED: False
+  - TITLE: COMMENT
+    TYPE: String
+    REQUIRED: False
+  RELATIONS:
+  - TYPE: Parent
+  - TYPE: File
+
+[TEXT]
+MID: ebf440a0d02c4efd9f714fb7c9f0a597
+STATEMENT: >>>
+In safety-critical projects, Modelica models often provide the simulation side
+of hardware-in-the-loop (HIL) tests. The requirements of such a system trace to
+the embedded software and to the Modelica models. The needs below come from the
+users who verify such systems.
+<<<
+
+[REQUIREMENT]
+MID: adf85d9210b444868906308bfd48aeaf
+UID: MOD-1
+STATUS: Draft
+TITLE: Trace requirements to Modelica classes and components
+STATEMENT: >>>
+Verification engineers need the requirements tool to link a requirement to the
+Modelica class or component that simulates or checks the requirement.
+<<<
+RATIONALE: >>>
+A link to a file or to a line range is coarse in a Modelica library. The class
+or the component is the unit that implements a requirement in a model.
+<<<
+
+[REQUIREMENT]
+MID: a2340a137b9e437c89a6e7894e87c82e
+UID: MOD-2
+STATUS: Draft
+TITLE: Links that survive model editing
+STATEMENT: >>>
+Modelica modelers need the links between requirements and Modelica code to
+remain intact after a Modelica tool rewrites the Modelica file.
+<<<
+RATIONALE: >>>
+Modelica tools, for example Dymola and Modelon Impact, rewrite a file when a
+user edits a class in the graphical editor. The rewrite can drop comments. The
+rewrite then also drops the relation markers in the comments.
+<<<
+
+[REQUIREMENT]
+MID: fd669cb67fb3491db242c7f225c82563
+UID: MOD-3
+STATUS: Draft
+TITLE: Links to generated models
+STATEMENT: >>>
+Verification engineers need the requirements tool to link a requirement to a
+Modelica class or component without a change to the Modelica file.
+<<<
+RATIONALE: >>>
+Verification tools generate Modelica check models from requirements and
+regenerate the models after each change of a requirement. A link in the
+requirements document survives the regeneration.
+<<<
