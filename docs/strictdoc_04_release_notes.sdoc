@@ -64,6 +64,10 @@ name. A ``@relation`` marker in the description string of a class or
 component links that class or component. The new ``component`` scope marks a
 component. ``CLASS`` and ``FUNCTION`` forward relations link to classes and
 components. The parser is written in Python and adds no dependency.
+
+2\) Fixed: the ReqIF export now accepts grammars in which two node types
+have a ``SingleChoice`` or ``MultipleChoice`` field with the same title and
+different options. Before, the export failed with an assertion error.
 <<<
 
 [[/SECTION]]
